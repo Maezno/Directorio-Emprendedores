@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,8 +19,8 @@
         --ring: rgba(37, 99, 235, 0.2);
         --shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
 
-        font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
-    Cantarell, Noto Sans, "Helvetica Neue", Arial, sans-serif;
+        font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, sans-serif;
         color: var(--text);
         background: url("fondo.jpg") no-repeat center center fixed;
         background-size: cover;
@@ -51,44 +54,52 @@
       /* ---- HEADER ---- */
       .dir-header {
         display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
+        grid-template-columns: 1fr minmax(0, 1100px) 1fr; /* columnas laterales flexibles y central fija */
         background-color: white;
         width: 100%;
-        padding: 1rem;
+        padding: 1rem 0; /* solo vertical */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
-        gap: 16px;
         position: relative;
-              }
+      }
 
+      /* Contenido real del header */
+      .dir-header-content {
+        display: grid;
+        grid-template-columns: auto 1fr auto; /* logo – título – acciones */
+        align-items: center;
+        gap: 12px; /* poco espacio entre las 3 columnas */
+        grid-column: 2; /* se centra en la columna central del grid principal */
+        padding: 0 16px; /* margen interno para el contenido */
+      }
+
+      /* Logo */
       .dir-logo {
         height: 80px;
         width: auto;
         flex-shrink: 0;
       }
 
-      
+      /* Título */
       .dir-title {
-  text-align: center;
-  font-size: clamp(20px, 4vw, 25px);
-  font-weight: 800;
-  letter-spacing: 0.2px;
-  line-height: 1.1;
-}
+        text-align: center;
+        font-size: clamp(20px, 4vw, 25px);
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        line-height: 1.1;
+      }
 
-.dir-actions {
-  display:grid;
-  align-items:center;
-  gap: 12px;
-  
-}
+      /* Acciones: búsqueda y botones */
+      .dir-actions {
+        display: grid;
+        align-items: center;
+        gap: 12px;
+      }
 
-.dir-btn-count{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+      .dir-btn-count {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
 
       /* ---- HAMBURGER MENU (solo móvil) ---- */
       .hamburger {
@@ -745,11 +756,18 @@
     </style>
   </head>
   <body class="dir-emprendedores">
-    <div class="dir-header">
-      <img src="logo-ze.png" alt="Logo" class="dir-logo" />
+    <!-- HEADER -->
+    <header class="dir-header">
+      <div class="dir-header-content">
+        <!-- Logo -->
+        <img src="logo-ze.png" alt="Logo" class="dir-logo" />
+
+        <!-- Título -->
         <div class="dir-title">Directorio de Emprendedores</div>
+
+        <!-- Acciones -->
         <div class="dir-actions">
-           <div class="dir-input">
+          <div class="dir-input">
             <svg
               width="18"
               height="18"
@@ -772,30 +790,38 @@
               aria-label="Buscar emprendedores"
             />
           </div>
+
           <div class="dir-btn-count">
-          <button id="sort-btn" class="g-btn">Orden Alfabético</button>
-          <div class="dir-count" id="dir-count"></div>
-        </div></div>
+            <button id="sort-btn" class="g-btn">Orden Alfabético</button>
+            <div class="dir-count" id="dir-count"></div>
+          </div>
+        </div>
       </div>
-      
-      <!-- Hamburger button (solo visible en móvil) -->
+
+      <!-- Botón hamburguesa (móvil) -->
       <button class="hamburger" id="hamburger" aria-label="Menú de opciones">
         <span></span>
         <span></span>
         <span></span>
       </button>
-    </div>
+    </header>
 
     <!-- Mobile menu -->
     <div class="mobile-menu" id="mobile-menu">
       <div class="mobile-menu-content">
         <div class="mobile-menu-header">
           <div class="mobile-menu-title">Opciones</div>
-          <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Cerrar menú">×</button>
+          <button
+            class="mobile-menu-close"
+            id="mobile-menu-close"
+            aria-label="Cerrar menú"
+          >
+            ×
+          </button>
         </div>
-        
+
         <button id="sort-btn-mobile" class="g-btn">Orden Alfabético</button>
-        
+
         <div class="dir-input">
           <svg
             width="18"
@@ -819,17 +845,18 @@
             aria-label="Buscar emprendedores"
           />
         </div>
-        
+
         <div class="dir-count" id="dir-count-mobile"></div>
       </div>
     </div>
 
-    <div class="dir-wrap">
+    <!-- Contenido -->
+    <main class="dir-wrap">
       <div class="dir-grid" id="grid" role="list"></div>
       <div class="credit">
         Tip: hacé click en un emprendedor para ver la ficha y la galería.
       </div>
-    </div>
+    </main>
 
     <!-- Modal -->
     <div
@@ -842,7 +869,7 @@
       <div class="sheet" role="document">
         <button class="close" id="close" aria-label="Cerrar ficha">×</button>
 
-        <!-- Header con datos del emprendedor -->
+        <!-- Header emprendedor -->
         <div class="sheet-header">
           <div class="hero">
             <img id="m-logo" alt="Logo" />
@@ -869,7 +896,7 @@
           </div>
         </div>
 
-        <!-- Content con descripción y galería -->
+        <!-- Contenido ficha -->
         <div class="sheet-content">
           <div class="desc" id="m-desc">Descripción</div>
           <div class="gallery">
@@ -912,7 +939,7 @@
       const hamburger = document.getElementById("hamburger");
       const mobileMenu = document.getElementById("mobile-menu");
       const mobileMenuClose = document.getElementById("mobile-menu-close");
-      
+
       let sortOrder = "aleatorio";
       let searchTimeout;
 
@@ -934,7 +961,7 @@
 
       hamburger.addEventListener("click", openMobileMenu);
       mobileMenuClose.addEventListener("click", closeMobileMenu);
-      
+
       // Cerrar menú al hacer click fuera
       mobileMenu.addEventListener("click", (e) => {
         if (e.target === mobileMenu) {
@@ -950,7 +977,9 @@
       }
 
       search.addEventListener("input", () => syncSearch(search, searchMobile));
-      searchMobile.addEventListener("input", () => syncSearch(searchMobile, search));
+      searchMobile.addEventListener("input", () =>
+        syncSearch(searchMobile, search)
+      );
 
       // ====== Cargar JSON externo ======
       fetch("emprendedores.json")
@@ -1004,11 +1033,12 @@
       // ====== Botones de orden ======
       function toggleSortOrder() {
         sortOrder = sortOrder === "aleatorio" ? "alfabetico" : "aleatorio";
-        const newText = sortOrder === "aleatorio" ? "Orden Alfabético" : "Orden Aleatorio";
-        
+        const newText =
+          sortOrder === "aleatorio" ? "Orden Alfabético" : "Orden Aleatorio";
+
         sortBtn.textContent = newText;
         sortBtnMobile.textContent = newText;
-        
+
         renderGridFiltered();
       }
 
@@ -1063,8 +1093,10 @@
           `;
           grid.appendChild(a);
         });
-        
-        const countText = `${items.length} emprendedor${items.length === 1 ? "" : "es"}`;
+
+        const countText = `${items.length} emprendedor${
+          items.length === 1 ? "" : "es"
+        }`;
         count.textContent = countText;
         updateCountDisplay();
       }
@@ -1291,7 +1323,9 @@
         if (gi < 0) gi = fotosValidas.length - 1;
 
         gStage.src = fotosValidas[gi];
-        gStage.alt = `Foto ${gi + 1} de ${fotosValidas.length} de ${active.nombre}`;
+        gStage.alt = `Foto ${gi + 1} de ${fotosValidas.length} de ${
+          active.nombre
+        }`;
 
         // Renderizar miniaturas
         thumbs.innerHTML = "";
@@ -1396,18 +1430,22 @@
 
       // ====== Prevenir scroll horizontal en dispositivos móviles ======
       let preventScrollX = false;
-      
+
       document.addEventListener("touchstart", (e) => {
         if (e.touches.length > 1) return;
         preventScrollX = false;
       });
 
-      document.addEventListener("touchmove", (e) => {
-        if (e.touches.length > 1) return;
-        if (preventScrollX) {
-          e.preventDefault();
-        }
-      }, { passive: false });
+      document.addEventListener(
+        "touchmove",
+        (e) => {
+          if (e.touches.length > 1) return;
+          if (preventScrollX) {
+            e.preventDefault();
+          }
+        },
+        { passive: false }
+      );
 
       // ====== Optimización de rendimiento ======
       // Debounce mejorado para las búsquedas
@@ -1424,10 +1462,14 @@
       }
 
       const debouncedSearch = debounce(optimizedRenderGridFiltered, 300);
-      
+
       // Reemplazar listeners de búsqueda con versión mejorada
-      search.removeEventListener("input", () => syncSearch(search, searchMobile));
-      searchMobile.removeEventListener("input", () => syncSearch(searchMobile, search));
+      search.removeEventListener("input", () =>
+        syncSearch(search, searchMobile)
+      );
+      searchMobile.removeEventListener("input", () =>
+        syncSearch(searchMobile, search)
+      );
 
       search.addEventListener("input", () => {
         searchMobile.value = search.value;
@@ -1440,20 +1482,20 @@
       });
 
       // ====== Mejorar experiencia táctil en dispositivos móviles ======
-      if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      if ("ontouchstart" in window || navigator.maxTouchPoints) {
         // Añadir clase para dispositivos táctiles
-        document.body.classList.add('touch-device');
-        
+        document.body.classList.add("touch-device");
+
         // Mejorar feedback táctil para botones
-        const buttons = document.querySelectorAll('button, .card');
-        buttons.forEach(button => {
-          button.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.98)';
+        const buttons = document.querySelectorAll("button, .card");
+        buttons.forEach((button) => {
+          button.addEventListener("touchstart", function () {
+            this.style.transform = "scale(0.98)";
           });
-          
-          button.addEventListener('touchend', function() {
+
+          button.addEventListener("touchend", function () {
             setTimeout(() => {
-              this.style.transform = '';
+              this.style.transform = "";
             }, 100);
           });
         });
