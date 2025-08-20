@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Directorio de Emprendedores</title>
+    <style>
+      /* ----- Scope everything under .dir-emprendedores ----- */
+      .dir-emprendedores {
+        --card: #ffffff;
+        --text: #1b325c;
+        --muted: #6b7280;
+        --accent: #2563eb;
+        --ring: rgba(37, 99, 235, 0.2);
+        --shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+
+        font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, "Helvetica Neue", Arial, sans-serif;
+        color: var(--text);
+        background: url("fondo.jpg") no-repeat center center fixed;
+        background-size: cover;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .dir-emprendedores * {
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 768px) {
+        .dir-emprendedores {
+          background: url("fondo-movil.jpg") no-repeat center center scroll;
+          background-size: cover;
+        }
+      }
+
+      /* ---- WRAP ---- */
+      .dir-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px 16px;
+      }
+      @media (max-width: 480px) {
+        .dir-wrap {
+          padding: 16px 12px;
+        }
+      }
+
+      /* ---- HEADER ---- */
+      .dir-header {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        gap: 16px;
+        position: relative;
+      }
+
+      .dir-logo {
+        height: 80px;
+        width: auto;
+        flex-shrink: 0;
+      }
+
+      .dir-header-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .dir-title {
+        font-size: clamp(20px, 4vw, 32px);
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        margin-bottom: 8px;
+      }
+
+      .dir-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      /* ---- HAMBURGER MENU (solo móvil) ---- */
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        flex-direction: column;
+        gap: 3px;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+      }
+
+      .hamburger:hover {
+        background: #f3f4f6;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      /* Mobile menu */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 20px;
+      }
+
+      .mobile-menu.open {
+        display: flex;
+      }
+
+      .mobile-menu-content {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 0 16px;
+        width: calc(100% - 32px);
+        max-width: 400px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .mobile-menu-title {
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--text);
+      }
+
+      .mobile-menu-close {
+        background: #f3f4f6;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        color: var(--text);
+      }
+
+      /* Ajustes para móviles */
+      @media (max-width: 640px) {
+        .dir-header {
+          justify-content: space-between;
+        }
+
+        .dir-logo {
+          height: 50px;
+        }
+
+        .dir-header-content {
+          flex: 1;
+          align-items: center;
+          text-align: center;
+        }
+
+        .dir-title {
+          margin-bottom: 0;
+          line-height: 1.2;
+        }
+
+        .dir-actions {
+          display: none; /* Ocultar acciones en móvil */
+        }
+
+        .hamburger {
+          display: flex;
+        }
+      }
+
+      /* ---- INPUT ---- */
+      .dir-input {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: var(--card);
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 12px;
+        box-shadow: var(--shadow);
+      }
+
+      @media (min-width: 641px) {
+        .dir-input {
+          width: min(420px, 100%);
+          padding: 8px 12px;
+        }
+      }
+
+      .dir-input input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+        font-size: 15px;
+        background: transparent;
+      }
+      .dir-input input::placeholder {
+        color: #9ca3af;
+      }
+
+      /* ---- CONTADOR ---- */
+      .dir-count {
+        font-size: 13px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      /* ---- GRID ---- */
+      .dir-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+        margin-top: 10px;
+      }
+      @media (max-width: 640px) {
+        .dir-grid {
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          gap: 10px;
+        }
+      }
+      @media (max-width: 480px) {
+        .dir-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+        }
+      }
+
+      /* ---- CARD ---- */
+      .card {
+        background: var(--card);
+        border: 1px solid #c2d500;
+        border-radius: 12px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.2s transform, 0.2s box-shadow;
+        box-shadow: var(--shadow);
+        position: relative;
+      }
+      @media (max-width: 480px) {
+        .card {
+          padding: 10px;
+          gap: 6px;
+          border-radius: 10px;
+        }
+      }
+
+      .card:focus,
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        outline: none;
+      }
+      @media (hover: none) {
+        .card:hover {
+          transform: none;
+        }
+      }
+
+      /* ---- LOGO CARD ---- */
+      .logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+      @media (max-width: 480px) {
+        .logo {
+          width: 80px;
+          height: 80px;
+          border-radius: 10px;
+        }
+      }
+
+      /* ---- NOMBRES Y TEXTOS ---- */
+      .name {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.2;
+        color: #1b325c;
+      }
+      @media (max-width: 480px) {
+        .name {
+          font-size: 14px;
+        }
+      }
+
+      .small {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      @media (max-width: 480px) {
+        .small {
+          font-size: 10px;
+        }
+      }
+
+      /* Modal y sheet */
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        background: rgba(17, 24, 39, 0.48);
+        backdrop-filter: saturate(160%) blur(6px);
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        z-index: 9999;
+      }
+      .modal.open {
+        display: flex;
+      }
+      @media (max-width: 480px) {
+        .modal {
+          padding: 12px;
+          align-items: flex-start;
+          padding-top: 20px;
+        }
+      }
+
+      .sheet {
+        width: min(980px, 100%);
+        background: var(--card);
+        border-radius: 16px;
+        border: 1px solid #c2d500;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      @media (max-width: 480px) {
+        .sheet {
+          border-radius: 12px;
+          max-height: 95vh;
+        }
+      }
+
+      .sheet-header {
+        display: flex;
+        gap: 20px;
+        padding: 16px;
+        background: #0c1931;
+        color: white;
+        border-bottom: 1px solid #c2d500;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      @media (max-width: 480px) {
+        .sheet-header {
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+        }
+      }
+
+      .sheet-header .hero {
+        flex-shrink: 0;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @media (max-width: 480px) {
+        .sheet-header .hero {
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      .sheet-header .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .sheet-header .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+        text-align: left;
+        flex: 1;
+      }
+      @media (max-width: 480px) {
+        .sheet-header .meta {
+          align-items: center;
+          text-align: center;
+          width: 100%;
+        }
+      }
+
+      .sheet-header .meta .hn {
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        font-size: 20px;
+        line-height: 1.3;
+        margin: 0;
+      }
+      @media (max-width: 480px) {
+        .sheet-header .meta .hn {
+          font-size: 18px;
+        }
+      }
+
+      .meta .row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        width: 100%;
+      }
+      @media (max-width: 480px) {
+        .meta .row {
+          flex-direction: column;
+          gap: 4px;
+          align-items: center;
+          text-align: center;
+        }
+      }
+
+      .meta .label {
+        min-width: 80px;
+        color: #a7b0c0;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding-top: 2px;
+      }
+      @media (max-width: 480px) {
+        .meta .label {
+          min-width: auto;
+          font-size: 10px;
+        }
+      }
+
+      .meta .val {
+        font-size: 14px;
+        color: #e5e7eb;
+        word-break: break-word;
+      }
+      @media (max-width: 480px) {
+        .meta .val {
+          font-size: 13px;
+        }
+      }
+
+      .meta a {
+        color: #bfdbfe;
+        text-decoration: none;
+        border-bottom: 1px dashed rgba(191, 219, 254, 0.5);
+      }
+
+      .sheet-content {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex-grow: 1;
+      }
+      @media (max-width: 480px) {
+        .sheet-content {
+          padding: 14px;
+          gap: 10px;
+        }
+      }
+
+      .sheet-content .desc {
+        font-size: 14px;
+        color: #374151;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 12px;
+        line-height: 1.4;
+      }
+      @media (max-width: 480px) {
+        .sheet-content .desc {
+          font-size: 13px;
+          padding: 10px;
+        }
+      }
+
+      /* Gallery with swipe support */
+      .gallery {
+        position: relative;
+        background: #0c1931;
+        border-radius: 12px;
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+      }
+      @media (max-width: 480px) {
+        .gallery {
+          padding: 8px;
+          border-radius: 10px;
+        }
+      }
+
+      .g-stage {
+        position: relative;
+        aspect-ratio: 16/10;
+        background: #0f172a;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        touch-action: pan-y pinch-zoom;
+        user-select: none;
+      }
+      @media (max-width: 768px) {
+        .g-stage {
+          aspect-ratio: 3/2;
+          min-height: 180px;
+        }
+      }
+      @media (max-width: 480px) {
+        .g-stage {
+          aspect-ratio: 4/3;
+          min-height: 150px;
+        }
+      }
+
+      .g-stage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        pointer-events: none;
+      }
+
+      .g-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        gap: 8px;
+      }
+      @media (max-width: 480px) {
+        .g-nav {
+          gap: 6px;
+        }
+      }
+
+      .g-thumbs {
+        display: flex;
+        gap: 6px;
+        overflow: auto;
+        padding-bottom: 2px;
+        flex: 1;
+        justify-content: center;
+      }
+      @media (max-width: 480px) {
+        .g-thumbs {
+          gap: 4px;
+        }
+      }
+
+      .g-thumbs img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        flex: 0 0 auto;
+      }
+      @media (max-width: 480px) {
+        .g-thumbs img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .g-thumbs img.active {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--ring);
+      }
+
+      .g-btn {
+        border: 1px solid #e5e7eb;
+        background: var(--card);
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.2s;
+        color: #1b325c;
+        white-space: nowrap;
+      }
+      @media (max-width: 480px) {
+        .g-btn {
+          padding: 5px 8px;
+          font-size: 11px;
+        }
+      }
+
+      .g-btn:hover {
+        background: #f3f4f6;
+      }
+
+      .g-btn:active {
+        transform: scale(0.95);
+      }
+
+      .close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: var(--card);
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 6px 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 14px;
+        z-index: 10;
+        transition: background-color 0.2s;
+      }
+      @media (max-width: 480px) {
+        .close {
+          top: 6px;
+          right: 6px;
+          padding: 5px 7px;
+          font-size: 13px;
+        }
+      }
+
+      .close:hover {
+        background: #f3f4f6;
+      }
+
+      /* Swipe indicators */
+      .swipe-hint {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.6);
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2px 6px;
+        border-radius: 4px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      @media (max-width: 768px) {
+        .swipe-hint {
+          opacity: 1;
+        }
+      }
+
+      /* Footer */
+      .credit {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 11px;
+        color: #9ca3af;
+        padding: 0 12px;
+      }
+      @media (max-width: 480px) {
+        .credit {
+          font-size: 10px;
+          margin-top: 12px;
+        }
+      }
+
+      /* Loading state */
+      .loading {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      /* Error handling */
+      .error-message {
+        text-align: center;
+        padding: 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* Accesibilidad mejorada */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Fix para evitar scroll horizontal en móviles */
+      .dir-emprendedores {
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body class="dir-emprendedores">
+    <div class="dir-header">
+      <img src="logo-ze.png" alt="Logo" class="dir-logo" />
+      <div class="dir-header-content">
+        <div class="dir-title">Directorio de Emprendedores</div>
+        <div class="dir-actions">
+          <button id="sort-btn" class="g-btn">Orden Alfabético</button>
+          <div class="dir-input">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 21L15.8 15.8M18 10.5C18 14.09 15.09 17 11.5 17C7.91 17 5 14.09 5 10.5C5 6.91 7.91 4 11.5 4C15.09 4 18 6.91 18 10.5Z"
+                stroke="#6b7280"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <input
+              id="search"
+              type="search"
+              placeholder="Buscar por nombre o rubro..."
+              aria-label="Buscar emprendedores"
+            />
+          </div>
+          <div class="dir-count" id="dir-count"></div>
+        </div>
+      </div>
+      
+      <!-- Hamburger button (solo visible en móvil) -->
+      <button class="hamburger" id="hamburger" aria-label="Menú de opciones">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+          <div class="mobile-menu-title">Opciones</div>
+          <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Cerrar menú">×</button>
+        </div>
+        
+        <button id="sort-btn-mobile" class="g-btn">Orden Alfabético</button>
+        
+        <div class="dir-input">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M21 21L15.8 15.8M18 10.5C18 14.09 15.09 17 11.5 17C7.91 17 5 14.09 5 10.5C5 6.91 7.91 4 11.5 4C15.09 4 18 6.91 18 10.5Z"
+              stroke="#6b7280"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          <input
+            id="search-mobile"
+            type="search"
+            placeholder="Buscar por nombre o rubro..."
+            aria-label="Buscar emprendedores"
+          />
+        </div>
+        
+        <div class="dir-count" id="dir-count-mobile"></div>
+      </div>
+    </div>
+
+    <div class="dir-wrap">
+      <div class="dir-grid" id="grid" role="list"></div>
+      <div class="credit">
+        Tip: hacé click en un emprendedor para ver la ficha y la galería.
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal"
+      id="modal"
+      aria-hidden="true"
+      aria-modal="true"
+      role="dialog"
+    >
+      <div class="sheet" role="document">
+        <button class="close" id="close" aria-label="Cerrar ficha">×</button>
+
+        <!-- Header con datos del emprendedor -->
+        <div class="sheet-header">
+          <div class="hero">
+            <img id="m-logo" alt="Logo" />
+          </div>
+          <div class="meta">
+            <div>
+              <h1 class="hn" id="m-name">Nombre</h1>
+              <div id="m-tag"></div>
+            </div>
+            <div class="row">
+              <div class="label">Dirección</div>
+              <div class="val" id="m-address">—</div>
+            </div>
+            <div class="row">
+              <div class="label">Teléfono</div>
+              <div class="val"><a id="m-phone" href="#">—</a></div>
+            </div>
+            <div class="row">
+              <div class="label">Web / Red</div>
+              <div class="val">
+                <a id="m-link" target="_blank" rel="noopener">—</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content con descripción y galería -->
+        <div class="sheet-content">
+          <div class="desc" id="m-desc">Descripción</div>
+          <div class="gallery">
+            <div class="g-stage" id="g-stage-container">
+              <img id="g-stage" alt="Foto del producto" />
+              <div class="swipe-hint">Deslizá para ver más fotos</div>
+            </div>
+            <div class="g-nav">
+              <button class="g-btn" id="prev">◀</button>
+              <div class="g-thumbs" id="thumbs"></div>
+              <button class="g-btn" id="next">▶</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ====== Función para mezclar array aleatoriamente ======
+      function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      let emprendedoresOriginales = [];
+      let emprendedores = [];
+
+      // ====== Variables del DOM ======
+      const grid = document.getElementById("grid");
+      const count = document.getElementById("dir-count");
+      const countMobile = document.getElementById("dir-count-mobile");
+      const search = document.getElementById("search");
+      const searchMobile = document.getElementById("search-mobile");
+      const sortBtn = document.getElementById("sort-btn");
+      const sortBtnMobile = document.getElementById("sort-btn-mobile");
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuClose = document.getElementById("mobile-menu-close");
+      
+      let sortOrder = "aleatorio";
+      let searchTimeout;
+
+      // ====== Mobile menu functionality ======
+      function openMobileMenu() {
+        mobileMenu.classList.add("open");
+        hamburger.classList.add("active");
+        document.body.style.overflow = "hidden";
+        // Sincronizar valores del menú móvil con los del desktop
+        searchMobile.value = search.value;
+        updateCountDisplay();
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      hamburger.addEventListener("click", openMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      
+      // Cerrar menú al hacer click fuera
+      mobileMenu.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+          closeMobileMenu();
+        }
+      });
+
+      // Sincronizar búsquedas entre desktop y móvil
+      function syncSearch(sourceInput, targetInput) {
+        targetInput.value = sourceInput.value;
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(optimizedRenderGridFiltered, 300);
+      }
+
+      search.addEventListener("input", () => syncSearch(search, searchMobile));
+      searchMobile.addEventListener("input", () => syncSearch(searchMobile, search));
+
+      // ====== Cargar JSON externo ======
+      fetch("emprendedores.json")
+        .then((res) => {
+          if (!res.ok) throw new Error("Error al cargar el archivo JSON");
+          return res.json();
+        })
+        .then((data) => {
+          emprendedoresOriginales = data.map((e) => ({
+            id: e.id,
+            nombre:
+              e.nombreLegible ||
+              e.id.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()),
+            rubro: e.rubro || "",
+            descripcion: e.descripcion || "",
+            direccion: e.direccion || "",
+            telefono: e.telefono || "",
+            link: e.link || "",
+            logo: `emprendedores/${e.id}/logo.png`,
+            fotos: Array.from(
+              { length: 8 },
+              (_, i) => `emprendedores/${e.id}/${i + 1}.jpg`
+            ),
+          }));
+
+          // Inicializar grid con orden aleatorio
+          emprendedores = shuffleArray(emprendedoresOriginales);
+          renderGrid(emprendedores);
+
+          // Abrir por hash directo
+          const hash = location.hash.replace("#", "");
+          if (hash) {
+            const exists = emprendedores.some((emp) => emp.id === hash);
+            if (exists) openModal(hash);
+          }
+        })
+        .catch((err) => {
+          console.error("Error cargando JSON:", err);
+          document.getElementById("grid").innerHTML =
+            '<div class="error-message">Error al cargar los emprendedores. Por favor, recarga la página.</div>';
+        });
+
+      // ====== Función para actualizar contadores ======
+      function updateCountDisplay() {
+        const currentCount = count.textContent;
+        if (countMobile) {
+          countMobile.textContent = currentCount;
+        }
+      }
+
+      // ====== Botones de orden ======
+      function toggleSortOrder() {
+        sortOrder = sortOrder === "aleatorio" ? "alfabetico" : "aleatorio";
+        const newText = sortOrder === "aleatorio" ? "Orden Alfabético" : "Orden Aleatorio";
+        
+        sortBtn.textContent = newText;
+        sortBtnMobile.textContent = newText;
+        
+        renderGridFiltered();
+      }
+
+      sortBtn.addEventListener("click", toggleSortOrder);
+      sortBtnMobile.addEventListener("click", () => {
+        toggleSortOrder();
+        closeMobileMenu();
+      });
+
+      // ====== Función que aplica búsqueda + orden ======
+      function renderGridFiltered() {
+        const q = normalize(search.value || searchMobile.value);
+        let filtered = emprendedores.filter(
+          (emp) =>
+            normalize(emp.nombre).includes(q) ||
+            normalize(emp.rubro).includes(q)
+        );
+
+        if (sortOrder === "alfabetico") {
+          filtered.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        } else {
+          // Mantener el orden aleatorio actual para los elementos filtrados
+          const originalOrder = emprendedores.map((emp) => emp.id);
+          filtered.sort(
+            (a, b) => originalOrder.indexOf(a.id) - originalOrder.indexOf(b.id)
+          );
+        }
+
+        renderGrid(filtered);
+      }
+
+      function renderGrid(items) {
+        if (!items.length) {
+          grid.innerHTML =
+            '<div class="error-message">No se encontraron emprendedores con esos criterios.</div>';
+          count.textContent = "0 emprendedores";
+          updateCountDisplay();
+          return;
+        }
+
+        grid.innerHTML = "";
+        items.forEach((emp) => {
+          const a = document.createElement("button");
+          a.className = "card";
+          a.setAttribute("role", "listitem");
+          a.setAttribute("aria-label", `Ver detalles de ${emp.nombre}`);
+          a.addEventListener("click", () => openModal(emp.id));
+          a.innerHTML = `
+            <img class="logo" src="${emp.logo}" alt="Logo de ${emp.nombre}" loading="lazy" onerror="this.style.display='none'" />
+            <div class="name">${emp.nombre}</div>
+            <div class="small">${emp.rubro}</div>
+          `;
+          grid.appendChild(a);
+        });
+        
+        const countText = `${items.length} emprendedor${items.length === 1 ? "" : "es"}`;
+        count.textContent = countText;
+        updateCountDisplay();
+      }
+
+      // ====== Search ======
+      function normalize(s) {
+        return s
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "");
+      }
+
+      // ====== Performance: Evitar re-renders innecesarios ======
+      let lastSearchValue = "";
+      let lastSortOrder = "aleatorio";
+
+      function optimizedRenderGridFiltered() {
+        const currentSearchValue = search.value || searchMobile.value;
+        if (
+          currentSearchValue === lastSearchValue &&
+          sortOrder === lastSortOrder
+        ) {
+          return; // No hay cambios, no re-renderizar
+        }
+
+        lastSearchValue = currentSearchValue;
+        lastSortOrder = sortOrder;
+        renderGridFiltered();
+      }
+
+      // ====== Modal logic ======
+      const modal = document.getElementById("modal");
+      const closeBtn = document.getElementById("close");
+      const mLogo = document.getElementById("m-logo");
+      const mName = document.getElementById("m-name");
+      const mTag = document.getElementById("m-tag");
+      const mDesc = document.getElementById("m-desc");
+      const mAddr = document.getElementById("m-address");
+      const mPhone = document.getElementById("m-phone");
+      const mLink = document.getElementById("m-link");
+      const gStage = document.getElementById("g-stage");
+      const gStageContainer = document.getElementById("g-stage-container");
+      const thumbs = document.getElementById("thumbs");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+
+      let active = null; // emprendedor activo
+      let gi = 0; // índice de foto
+      let fotosValidas = []; // fotos válidas del emprendedor actual
+
+      // ====== Swipe functionality ======
+      let startX = 0;
+      let startY = 0;
+      let distX = 0;
+      let distY = 0;
+      let threshold = 50; // mínima distancia para considerar swipe
+      let allowedTime = 300; // máximo tiempo para swipe
+      let elapsedTime = 0;
+      let startTime = 0;
+
+      function handleTouchStart(e) {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        startTime = new Date().getTime();
+        e.preventDefault();
+      }
+
+      function handleTouchMove(e) {
+        e.preventDefault(); // previene scroll mientras se hace swipe
+      }
+
+      function handleTouchEnd(e) {
+        if (!active || !fotosValidas.length) return;
+
+        const touch = e.changedTouches[0];
+        distX = touch.clientX - startX;
+        distY = touch.clientY - startY;
+        elapsedTime = new Date().getTime() - startTime;
+
+        // Verificar si es un swipe válido
+        if (
+          elapsedTime <= allowedTime &&
+          Math.abs(distX) >= threshold &&
+          Math.abs(distY) <= 100
+        ) {
+          if (distX > 0) {
+            // Swipe derecha - foto anterior
+            prevPhoto();
+          } else {
+            // Swipe izquierda - foto siguiente
+            nextPhoto();
+          }
+        }
+      }
+
+      function openModal(id) {
+        const emp = emprendedores.find((e) => e.id === id);
+        if (!emp) return;
+
+        // Cerrar menú móvil si está abierto
+        if (mobileMenu.classList.contains("open")) {
+          closeMobileMenu();
+        }
+
+        active = emp;
+        gi = 0;
+
+        // Filtrar fotos que existen
+        fotosValidas = [];
+        const checkImages = emp.fotos.map((src, index) => {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve({ src, index, exists: true });
+            img.onerror = () => resolve({ src, index, exists: false });
+            img.src = src;
+          });
+        });
+
+        Promise.all(checkImages).then((results) => {
+          fotosValidas = results.filter((r) => r.exists).map((r) => r.src);
+          if (fotosValidas.length === 0) {
+            // Si no hay fotos, usar el logo como única imagen
+            fotosValidas = [emp.logo];
+          }
+          renderGallery();
+        });
+
+        // Configurar información del emprendedor
+        mLogo.src = emp.logo;
+        mLogo.alt = `Logo de ${emp.nombre}`;
+        mName.textContent = emp.nombre;
+        mTag.textContent = emp.rubro;
+        mDesc.textContent = emp.descripcion || "Sin descripción disponible.";
+        mAddr.textContent = emp.direccion || "Sin dirección disponible.";
+
+        // Configurar teléfono
+        if (emp.telefono) {
+          mPhone.textContent = emp.telefono;
+          mPhone.href = `tel:${emp.telefono.replace(/[^+\d]/g, "")}`;
+          mPhone.style.pointerEvents = "auto";
+        } else {
+          mPhone.textContent = "—";
+          mPhone.href = "#";
+          mPhone.style.pointerEvents = "none";
+        }
+
+        // Configurar link
+        if (emp.link) {
+          const displayLink = emp.link.replace(/^https?:\/\//, "").slice(0, 40);
+          mLink.textContent = displayLink;
+          mLink.href = emp.link;
+          mLink.style.pointerEvents = "auto";
+        } else {
+          mLink.textContent = "—";
+          mLink.href = "#";
+          mLink.style.pointerEvents = "none";
+        }
+
+        modal.scrollTop = 0;
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        // Agregar event listeners para swipe
+        gStageContainer.addEventListener("touchstart", handleTouchStart, {
+          passive: false,
+        });
+        gStageContainer.addEventListener("touchmove", handleTouchMove, {
+          passive: false,
+        });
+        gStageContainer.addEventListener("touchend", handleTouchEnd, {
+          passive: false,
+        });
+
+        history.pushState(null, "", `#${id}`);
+      }
+
+      function closeModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+
+        // Remover event listeners para swipe
+        gStageContainer.removeEventListener("touchstart", handleTouchStart);
+        gStageContainer.removeEventListener("touchmove", handleTouchMove);
+        gStageContainer.removeEventListener("touchend", handleTouchEnd);
+
+        active = null;
+        fotosValidas = [];
+
+        if (location.hash.startsWith("#")) {
+          history.pushState(
+            "",
+            document.title,
+            window.location.pathname + window.location.search
+          );
+        }
+      }
+
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (modal.classList.contains("open")) {
+            closeModal();
+          } else if (mobileMenu.classList.contains("open")) {
+            closeMobileMenu();
+          }
+        }
+        if (!active || !fotosValidas.length) return;
+        if (e.key === "ArrowRight") nextPhoto();
+        if (e.key === "ArrowLeft") prevPhoto();
+      });
+
+      function renderGallery() {
+        if (!active || !fotosValidas.length) return;
+
+        // Asegurar que el índice esté dentro del rango
+        if (gi >= fotosValidas.length) gi = 0;
+        if (gi < 0) gi = fotosValidas.length - 1;
+
+        gStage.src = fotosValidas[gi];
+        gStage.alt = `Foto ${gi + 1} de ${fotosValidas.length} de ${active.nombre}`;
+
+        // Renderizar miniaturas
+        thumbs.innerHTML = "";
+        fotosValidas.forEach((src, idx) => {
+          const t = document.createElement("img");
+          t.src = src;
+          t.alt = `Miniatura ${idx + 1}`;
+          t.loading = "lazy";
+          if (idx === gi) t.classList.add("active");
+          t.addEventListener("click", () => {
+            gi = idx;
+            renderGallery();
+          });
+          thumbs.appendChild(t);
+        });
+
+        // Mostrar/ocultar controles según cantidad de fotos
+        const hasMultiplePhotos = fotosValidas.length > 1;
+        prev.style.display = hasMultiplePhotos ? "block" : "none";
+        next.style.display = hasMultiplePhotos ? "block" : "none";
+
+        // Scroll automático de thumbnails para mantener visible la foto activa
+        if (hasMultiplePhotos) {
+          const activeThumb = thumbs.querySelector(".active");
+          if (activeThumb) {
+            activeThumb.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
+          }
+        }
+      }
+
+      function nextPhoto() {
+        if (!active || !fotosValidas.length) return;
+        gi = (gi + 1) % fotosValidas.length;
+        renderGallery();
+      }
+
+      function prevPhoto() {
+        if (!active || !fotosValidas.length) return;
+        gi = (gi - 1 + fotosValidas.length) % fotosValidas.length;
+        renderGallery();
+      }
+
+      next.addEventListener("click", nextPhoto);
+      prev.addEventListener("click", prevPhoto);
+
+      // ====== Manejo del historial del navegador ======
+      window.addEventListener("popstate", () => {
+        const hash = location.hash.replace("#", "");
+        if (hash && emprendedores.some((emp) => emp.id === hash)) {
+          openModal(hash);
+        } else if (modal.classList.contains("open")) {
+          closeModal();
+        }
+      });
+
+      // ====== Mejorar accesibilidad ======
+      modal.addEventListener("focus", (e) => {
+        if (!modal.contains(e.target)) {
+          closeBtn.focus();
+        }
+      });
+
+      // Trap focus dentro del modal cuando está abierto
+      document.addEventListener("keydown", (e) => {
+        if (!modal.classList.contains("open")) return;
+
+        if (e.key === "Tab") {
+          const focusableElements = modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          const firstElement = focusableElements[0];
+          const lastElement = focusableElements[focusableElements.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+              lastElement.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              firstElement.focus();
+              e.preventDefault();
+            }
+          }
+        }
+      });
+
+      // ====== Manejo de errores de imágenes ======
+      document.addEventListener(
+        "error",
+        (e) => {
+          if (e.target.tagName === "IMG") {
+            e.target.style.display = "none";
+          }
+        },
+        true
+      );
+
+      // ====== Prevenir scroll horizontal en dispositivos móviles ======
+      let preventScrollX = false;
+      
+      document.addEventListener("touchstart", (e) => {
+        if (e.touches.length > 1) return;
+        preventScrollX = false;
+      });
+
+      document.addEventListener("touchmove", (e) => {
+        if (e.touches.length > 1) return;
+        if (preventScrollX) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // ====== Optimización de rendimiento ======
+      // Debounce mejorado para las búsquedas
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      const debouncedSearch = debounce(optimizedRenderGridFiltered, 300);
+      
+      // Reemplazar listeners de búsqueda con versión mejorada
+      search.removeEventListener("input", () => syncSearch(search, searchMobile));
+      searchMobile.removeEventListener("input", () => syncSearch(searchMobile, search));
+
+      search.addEventListener("input", () => {
+        searchMobile.value = search.value;
+        debouncedSearch();
+      });
+
+      searchMobile.addEventListener("input", () => {
+        search.value = searchMobile.value;
+        debouncedSearch();
+      });
+
+      // ====== Mejorar experiencia táctil en dispositivos móviles ======
+      if ('ontouchstart' in window || navigator.maxTouchPoints) {
+        // Añadir clase para dispositivos táctiles
+        document.body.classList.add('touch-device');
+        
+        // Mejorar feedback táctil para botones
+        const buttons = document.querySelectorAll('button, .card');
+        buttons.forEach(button => {
+          button.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+          });
+          
+          button.addEventListener('touchend', function() {
+            setTimeout(() => {
+              this.style.transform = '';
+            }, 100);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
