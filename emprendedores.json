@@ -2,6 +2,10 @@
   {
     "id": "alebrijes",
     "logo": "alebrijes/alebrijes.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "alebrijes/1.jpg",
       "alebrijes/2.jpg",
@@ -16,6 +20,10 @@
   {
     "id": "algo-bonito",
     "logo": "algo-bonito/algo-bonito.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "algo-bonito/1.jpg",
       "algo-bonito/2.jpg",
@@ -30,6 +38,10 @@
   {
     "id": "amora-shame",
     "logo": "amora-shame/amora-shame.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "amora-shame/1.jpg",
       "amora-shame/2.jpg",
@@ -44,6 +56,10 @@
   {
     "id": "anastasia",
     "logo": "anastasia/anastasia.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "anastasia/1.jpg",
       "anastasia/2.jpg",
@@ -59,6 +75,10 @@
     "id": "artesanias-tere",
     "nombreLegible": "Artesanías Tere",
     "logo": "artesanias-tere/artesanias-tere.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "artesanias-tere/1.jpg",
       "artesanias-tere/2.jpg",
@@ -73,6 +93,10 @@
   {
     "id": "cactus-zapala",
     "logo": "cactus-zapala/cactus-zapala.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "cactus-zapala/1.jpg",
       "cactus-zapala/2.jpg",
@@ -87,6 +111,10 @@
   {
     "id": "coket-accesorios",
     "logo": "coket-accesorios/coket-accesorios.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "coket-accesorios/1.jpg",
       "coket-accesorios/2.jpg",
@@ -101,6 +129,10 @@
   {
     "id": "coral-creaciones",
     "logo": "coral-creaciones/coral-creaciones.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "coral-creaciones/1.jpg",
       "coral-creaciones/2.jpg",
@@ -115,6 +147,10 @@
   {
     "id": "creaciones-mary",
     "logo": "creaciones-mary/creaciones-mary.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "creaciones-mary/1.jpg",
       "creaciones-mary/2.jpg",
@@ -130,6 +166,10 @@
     "id": "cvr-vitrofusion",
     "nombreLegible": "CRV Vitrofusión",
     "logo": "cvr-vitrofusion/cvr-vitrofusion.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "cvr-vitrofusion/1.jpg",
       "cvr-vitrofusion/2.jpg",
@@ -144,6 +184,10 @@
   {
     "id": "el-taller-de-poly",
     "logo": "el-taller-de-poly/el-taller-de-poly.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "el-taller-de-poly/1.jpg",
       "el-taller-de-poly/2.jpg",
@@ -158,6 +202,10 @@
   {
     "id": "helwe-comidas-arabes",
     "logo": "helwe-comidas-arabes/helwe-comidas-arabes.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "helwe-comidas-arabes/1.jpg",
       "helwe-comidas-arabes/2.jpg",
@@ -173,6 +221,10 @@
     "id": "hilando-suenos",
     "nombreLegible": "Hilando Sueños",
     "logo": "hilando-suenos/hilando-suenos.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "hilando-suenos/1.jpg",
       "hilando-suenos/2.jpg",
@@ -187,6 +239,10 @@
   {
     "id": "kokeamor",
     "logo": "kokeamor/kokeamor.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "kokeamor/1.jpg",
       "kokeamor/2.jpg",
@@ -201,6 +257,10 @@
   {
     "id": "lanitas",
     "logo": "lanitas/lanitas.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "lanitas/1.jpg",
       "lanitas/2.jpg",
@@ -215,6 +275,10 @@
   {
     "id": "las-velas",
     "logo": "las-velas/las-velas.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "las-velas/1.jpg",
       "las-velas/2.jpg",
@@ -229,6 +293,10 @@
   {
     "id": "lunita-store",
     "logo": "lunita-store/lunita-store.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "lunita-store/1.jpg",
       "lunita-store/2.jpg",
@@ -243,6 +311,10 @@
   {
     "id": "mi-arte",
     "logo": "mi-arte/mi-arte.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "mi-arte/1.jpg",
       "mi-arte/2.jpg",
@@ -257,6 +329,10 @@
   {
     "id": "mi-vieja",
     "logo": "mi-vieja/mi-vieja.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "mi-vieja/1.jpg",
       "mi-vieja/2.jpg",
@@ -271,6 +347,10 @@
   {
     "id": "otaku-shop",
     "logo": "otaku-shop/otaku-shop.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "otaku-shop/1.jpg",
       "otaku-shop/2.jpg",
@@ -285,6 +365,10 @@
   {
     "id": "perro-loco",
     "logo": "perro-loco/perro-loco.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "perro-loco/1.jpg",
       "perro-loco/2.jpg",
@@ -299,6 +383,10 @@
   {
     "id": "pobre-gaucho",
     "logo": "pobre-gaucho/pobre-gaucho.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "pobre-gaucho/1.jpg",
       "pobre-gaucho/2.jpg",
@@ -313,6 +401,10 @@
   {
     "id": "puerto-patagonia",
     "logo": "puerto-patagonia/puerto-patagonia.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "puerto-patagonia/1.jpg",
       "puerto-patagonia/2.jpg",
@@ -327,6 +419,10 @@
   {
     "id": "quenino",
     "logo": "quenino/quenino.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "quenino/1.jpg",
       "quenino/2.jpg",
@@ -341,6 +437,10 @@
   {
     "id": "sentidos-del-arte",
     "logo": "sentidos-del-arte/sentidos-del-arte.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "sentidos-del-arte/1.jpg",
       "sentidos-del-arte/2.jpg",
@@ -355,6 +455,10 @@
   {
     "id": "sunshine-accesories",
     "logo": "sunshine-accesories/sunshine-accesories.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "sunshine-accesories/1.jpg",
       "sunshine-accesories/2.jpg",
@@ -370,6 +474,10 @@
     "id": "nuque-tejidos",
     "nombreLegible": "Ñuque Tejidos",
     "logo": "nuque-tejidos/nuque-tejidos.png",
+    "direccion": "",
+    "telefono": "",
+    "web": "",
+    "descripcion": "",
     "fotos": [
       "nuque-tejidos/1.jpg",
       "nuque-tejidos/2.jpg",
